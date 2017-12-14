@@ -33,6 +33,20 @@
 # define ORANGE 0x00FFA500
 # define YELLOW 0xFFFF66
 
+typedef struct		s_fract
+{
+	double			x1;
+	double			y1;
+	double			x2;
+	double			y2;
+	double			zoom_x;
+	double			zoom_y;
+	double			c_r;
+	double			c_i;
+	double			z_r;
+	double			z_i;
+}					t_fract;
+
 typedef struct		s_img
 {
 	void			*img;
@@ -48,5 +62,10 @@ typedef struct		s_mlx
 	void			*win;
 	t_img			*img;
 }					t_mlx;
+
+void	ft_fill_pixel(t_img img, int x, int y, int color);
+void	ft_draw_mandelbrot(t_img img);
+void	ft_draw_julia(t_img img);
+int		ft_check_errors(int argc, char **argv);
 
 #endif

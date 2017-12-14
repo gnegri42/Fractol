@@ -13,6 +13,9 @@
 NAME = 			fractol
 
 SRCS = 			main.c\
+				ft_mandelbrot.c\
+				ft_julia.c\
+				ft_check_errors.c\
 
 OBJS = 			$(SRCS:.c=.o)
 

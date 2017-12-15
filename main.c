@@ -12,17 +12,18 @@
 
 #include "fractol.h"
 
-int		ft_key_events(int keycode, t_mlx *mlx)
+void	ft_exec_frac(t_mlx mlx, t_img img, t_fract *fract)
 {
-	if (keycode == 53)
-		exit(1);
-	if (keycode == 13)
+	if (mlx.num == 1)
 	{
-		mlx_destroy_image(mlx->mlx, mlx->img);
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
-		ft_draw_mandelbrot(*mlx->img);
+		ft_init_mandel(fract);
+		ft_draw(mlx, img, fract);
 	}
-	return (0);
+	else if (mlx.num == 2)
+	{
+		ft_init_julia(fract);
+		ft_draw(mlx, img, fract);
+	}
 }
 
 void	ft_fill_pixel(t_img img, int x, int y, int color)
@@ -37,20 +38,21 @@ int		main(int argc, char **argv)
 {
 	t_mlx	mlx;
 	t_img	img;
+	t_fract *fract;
 
-	mlx.img = &img;
 	if (ft_check_errors(argc, argv) != 1)
 		return (0);
 	mlx.mlx = mlx_init();
-	img.str_img = (int *)malloc(sizeof(int) * (WIN_WIDTH * WIN_HEIGHT));
+	mlx.img = &img;
+	fract = (t_fract *)malloc(sizeof(t_fract));
+	mlx.fract = fract;
+	mlx.num = ft_atoi(argv[1]);
+	mlx.win = mlx_new_window(mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "fractol");
 	img.img = mlx_new_image(mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
 	img.str_img = (int *)mlx_get_data_addr(img.img, &(img.bpp), &(img.s_l), &(img.endian));
-	if (ft_strcmp(argv[1], "1") == 0)
-		ft_draw_mandelbrot(img);
-	else if (ft_strcmp(argv[1], "2") == 0)
-		ft_draw_julia(img);
-	mlx.win = mlx_new_window(mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "fractol");
+	ft_exec_frac(mlx, img, mlx.fract);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, img.img, 0, 0);
+	//mlx_destroy_image(mlx.mlx, img.img);
 	mlx_key_hook(mlx.win, ft_key_events, &mlx);
 	mlx_loop(mlx.mlx);
 	return (0);

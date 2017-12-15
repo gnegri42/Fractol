@@ -24,8 +24,6 @@
 
 # define WIN_WIDTH	1200
 # define WIN_HEIGHT	1200
-# define IMG_WIDTH	500
-# define IMG_HEIGHT	500
 
 # define BLUE 0x1E90FF
 # define WHITE 0xFFFFFF
@@ -61,11 +59,18 @@ typedef struct		s_mlx
 	void			*mlx;
 	void			*win;
 	t_img			*img;
+	t_fract			*fract;
+	int				num;
 }					t_mlx;
 
 void	ft_fill_pixel(t_img img, int x, int y, int color);
-void	ft_draw_mandelbrot(t_img img);
-void	ft_draw_julia(t_img img);
+void	ft_init_mandel(t_fract *fract);
+void	ft_init_julia(t_fract *fract);
+void	ft_exec_frac(t_mlx mlx, t_img img, t_fract *fract);
+void	ft_draw(t_mlx mlx, t_img img, t_fract *fract);
+void	ft_draw_mandelbrot(t_img img, t_fract *fract);
+void	ft_draw_julia(t_img img, t_fract *fract);
 int		ft_check_errors(int argc, char **argv);
+int		ft_key_events(int keycode, t_mlx *mlx);
 
 #endif

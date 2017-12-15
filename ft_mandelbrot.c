@@ -11,32 +11,31 @@
 /* ************************************************************************** */
 
 #include "fractol.h"
+#include <stdio.h>
 
-static t_fract	ft_init_fract(void)
-{
-	t_fract fract;
-	
-	fract.x1 = -2.1;
-	fract.x2 = 0.6;
-	fract.y1 = -1.2;
-	fract.y2 = 1.2;
-	fract.zoom_x = WIN_WIDTH/(fract.x2 - fract.x1);
-	fract.zoom_y = WIN_HEIGHT/(fract.y2 - fract.y1);
-	fract.c_r = 0;
-	fract.c_i = 0;
-	fract.z_r = 0;
-	fract.z_i = 0;
-	return (fract);
+void	ft_init_mandel(t_fract *fract)
+{	
+	fract->x1 = -2.1;
+	fract->x2 = 0.6;
+	fract->y1 = -1.2;
+	fract->y2 = 1.2;
+	fract->zoom_x = WIN_WIDTH / (fract->x2 - fract->x1);
+	fract->zoom_y = WIN_HEIGHT / (fract->y2 - fract->y1);
+	/*
+	fract->c_r = 0;
+	fract->c_i = 0;
+	fract->z_r = 0;
+	fract->z_i = 0;
+	*/
 }
 
-void	ft_draw_mandelbrot(t_img img)
+void	ft_draw_mandelbrot(t_img img, t_fract *fract)
 {
 	int		max;
 	int		i;
 	double	x;
 	double	y;
 	double	tmp;
-	t_fract fract;
 	const unsigned int COLOR_TABLE[] = {
 		0xf7df, 0xff5a, 0x07ff, 0x7ffa, 0xf7ff, 0xf7bb, 0xff38, 0xff59, 0x001f, 0x895c,
 		0xa145, 0xddd0, 0x5cf4, 0x7fe0, 0xd343, 0xfbea, 0x64bd, 0xffdb, 0xd8a7, 0x07ff,
@@ -55,7 +54,6 @@ void	ft_draw_mandelbrot(t_img img)
 		0xffe0, 0x9e66, 0x0000
 	};
 
-	fract = ft_init_fract();
 	max = 50;
 	x = 0;
 	while (x < WIN_WIDTH)
@@ -63,16 +61,17 @@ void	ft_draw_mandelbrot(t_img img)
 		y = 0;
 		while (y < WIN_HEIGHT)
 		{
-			fract.c_r = x / fract.zoom_x + fract.x1;
-			fract.c_i = y / fract.zoom_y + fract.y1;
-			fract.z_r = 0;
-			fract.z_i = 0;
+			fract->c_r = x / fract->zoom_x + fract->x1;
+			fract->c_i = y / fract->zoom_y + fract->y1;
 			i = 0;
-			while (fract.z_r * fract.z_r + fract.z_i * fract.z_i < 4 && i < max)
+			fract->z_r = 0;
+			fract->z_i = 0;
+			while (fract->z_r * fract->z_r + fract->z_i * fract->z_i < 4 && i < max)
 			{
-				tmp = fract.z_r;
-				fract.z_r = fract.z_r * fract.z_r - fract.z_i * fract.z_i + fract.c_r;
-				fract.z_i = 2 * tmp * fract.z_i + fract.c_i;
+				
+				tmp = fract->z_r;
+				fract->z_r = fract->z_r * fract->z_r - fract->z_i * fract->z_i + fract->c_r;
+				fract->z_i = 2 * tmp * fract->z_i + fract->c_i;
 				i++;
 			}
 			if (i == max)

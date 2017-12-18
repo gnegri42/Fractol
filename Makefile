@@ -16,8 +16,11 @@ SRCS = 			main.c\
 				ft_draw.c\
 				ft_mandelbrot.c\
 				ft_julia.c\
+				ft_burning_ship.c\
 				ft_check_errors.c\
 				ft_key_events.c\
+				ft_mouse_events.c\
+				ft_color.c\
 
 OBJS = 			$(SRCS:.c=.o)
 

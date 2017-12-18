@@ -20,7 +20,7 @@ int		ft_check_errors(int argc, char **argv)
 		ft_putstr("usage: ./fractol int_number\n");
 		ft_putstr("1 : Mandlebrot\n");
 		ft_putstr("2 : Julia\n");
-		ft_putstr("3 : Bruning ship\n");
+		ft_putstr("3 : Burning ship\n");
 		return (0);
 	}
 	return (1);

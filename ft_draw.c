@@ -12,10 +12,17 @@
 
 #include "fractol.h"
 
-void	ft_draw(t_mlx mlx, t_img img, t_fract *fract)
+void	ft_draw(t_mlx *mlx, t_img *img, t_fract *fract)
 {
-	if (mlx.num == 1)
-		ft_draw_mandelbrot(img, fract);
-	else if (mlx.num == 2)
-		ft_draw_julia(img, fract);
+	if (mlx->num == 1)
+		ft_draw_mandelbrot(mlx, img, fract);
+	else if (mlx->num == 2)
+		ft_draw_julia(mlx, img, fract);
+	else if (mlx->num == 3)
+		ft_draw_bship(mlx, img, fract);
+
+	/*
+	else if (mlx->num == 4)
+		ft_draw_sierpinski(mlx, img, fract);
+		*/
 }

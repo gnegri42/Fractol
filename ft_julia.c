@@ -20,13 +20,14 @@ void	ft_init_julia(t_fract *fract)
 	fract->x2 = 2;
 	fract->y1 = -1.5;
 	fract->y2 = 1.5;
+	fract->nb_zoom = 0;
 	fract->zoom_x = WIN_WIDTH/(fract->x2 - fract->x1);
 	fract->zoom_y = WIN_HEIGHT/(fract->y2 - fract->y1);
 	fract->c_r = 0.305;
 	fract->c_i = 0.02;
 	fract->z_r = 0;
 	fract->z_i = 0;
-	fract->max = 50;
+	fract->max = 100;
 }
 
 void	ft_draw_julia(t_mlx *mlx, t_img *img, t_fract *fract)

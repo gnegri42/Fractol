@@ -36,17 +36,23 @@ typedef struct		s_fract
 {
 	int				x;
 	int				y;
+	double			tmp_x1;
+	double			tmp_x2;
+	double			tmp_y1;
+	double			tmp_y2;
 	double			x1;
 	double			y1;
 	double			x2;
 	double			y2;
 	double			zoom_x;
 	double			zoom_y;
+	int				nb_zoom;
 	double			c_r;
 	double			c_i;
 	double			z_r;
 	double			z_i;
 	int				max;
+	int				test;
 }					t_fract;
 
 typedef struct		s_img
@@ -66,22 +72,24 @@ typedef struct		s_mlx
 	t_fract			*fract;
 	int				num;
 	int	 			color_value;
+	int				stop;
 }					t_mlx;
 
 void				ft_fill_pixel(t_img img, int x, int y, int color);
 void				ft_init_mandel(t_fract *fract);
 void				ft_init_julia(t_fract *fract);
 void				ft_init_bship(t_fract *fract);
-//void				ft_init_sierpinski(t_fract *fract);
+void				ft_init_sierpinski(t_fract *fract);
 void				ft_exec_frac(t_mlx *mlx, t_img *img, t_fract *fract);
 void				ft_draw(t_mlx *mlx, t_img *img, t_fract *fract);
 void				ft_draw_mandelbrot(t_mlx *mlx,t_img *img, t_fract *fract);
 void				ft_draw_julia(t_mlx *mlx,t_img *img, t_fract *fract);
 void				ft_draw_bship(t_mlx *mlx,t_img *img, t_fract *fract);
-//void				ft_draw_sierpinski(t_mlx *mlx, t_img *img, t_fract *fract);
+void				ft_draw_sierpinski(t_mlx *mlx, t_img *img, t_fract *fract);
 int					ft_check_errors(int argc, char **argv);
 int					ft_key_events(int keycode, t_mlx *mlx);
-int					ft_mouse_events(int keycode, t_mlx *mlx);
+int					ft_move_julia(int x, int y, t_mlx *mlx);
+int					ft_mouse_zoom(int button, int x, int y, t_mlx *mlx);
 unsigned int		ft_get_color(int i, t_mlx *mlx);
 void				ft_change_color(t_mlx *mlx);
 

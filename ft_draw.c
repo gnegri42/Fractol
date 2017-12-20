@@ -20,9 +20,6 @@ void	ft_draw(t_mlx *mlx, t_img *img, t_fract *fract)
 		ft_draw_julia(mlx, img, fract);
 	else if (mlx->num == 3)
 		ft_draw_bship(mlx, img, fract);
-
-	/*
 	else if (mlx->num == 4)
 		ft_draw_sierpinski(mlx, img, fract);
-		*/
 }

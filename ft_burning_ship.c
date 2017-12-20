@@ -17,12 +17,13 @@ void	ft_init_bship(t_fract *fract)
 {
 	fract->x = 0;
 	fract->y = 0;
-	fract->x1 = -1.813659;
+	fract->x1 = -2.5;
 	fract->x2 = 1;
-	fract->y1 = -0.086517;
-	fract->y2 = 1.2;
-	fract->zoom_x = WIN_WIDTH * 10;
-	fract->zoom_y = WIN_WIDTH * 10;
+	fract->y1 = -1;
+	fract->y2 = 1;
+	fract->nb_zoom = 0;
+	fract->zoom_x = WIN_WIDTH / (fract->x2 - fract->x1);
+	fract->zoom_y = WIN_HEIGHT / (fract->y2 - fract->y1);
 	fract->max = 100;
 }
 

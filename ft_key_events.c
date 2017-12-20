@@ -20,7 +20,7 @@ void	ft_change_max(int keycode, t_mlx *mlx)
 		&(mlx->img->bpp), &(mlx->img->s_l), &(mlx->img->endian));
 	if (keycode == 69)
 		mlx->fract->max += 50;
-	if (keycode == 78)
+	if (keycode == 78 && mlx->fract->max >= 100)
 		mlx->fract->max -= 50;
 	ft_draw(mlx, mlx->img, mlx->fract);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->img, 0, 0);
@@ -48,21 +48,21 @@ void	ft_move(int keycode, t_mlx *mlx)
 void	ft_zoom(int keycode, t_mlx *mlx)
 {
 	mlx->img->img = mlx_new_image(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
-		mlx->img->str_img = (int *)mlx_get_data_addr(mlx->img->img,
-			&(mlx->img->bpp), &(mlx->img->s_l), &(mlx->img->endian));
-		if (keycode == 13)
-		{
-			mlx->fract->zoom_x += mlx->fract->zoom_x * 1.05 / 2;
-			mlx->fract->zoom_y += mlx->fract->zoom_y * 1.05 / 2;
-		}
-		if (keycode == 1)
-		{
-			mlx->fract->zoom_x -= mlx->fract->zoom_x * 0.5 / 2;
-			mlx->fract->zoom_y -= mlx->fract->zoom_y * 0.5 / 2;
-		}
-		ft_draw(mlx, mlx->img, mlx->fract);
-		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->img, 0, 0);
-		mlx_destroy_image(mlx->mlx, mlx->img->img);
+	mlx->img->str_img = (int *)mlx_get_data_addr(mlx->img->img,
+		&(mlx->img->bpp), &(mlx->img->s_l), &(mlx->img->endian));
+	if (keycode == 13)
+	{
+		mlx->fract->zoom_x += mlx->fract->zoom_x * 1.05 / 2;
+		mlx->fract->zoom_y += mlx->fract->zoom_y * 1.05 / 2;
+	}
+	if (keycode == 1)
+	{
+		mlx->fract->zoom_x -= mlx->fract->zoom_x * 0.5 / 2;
+		mlx->fract->zoom_y -= mlx->fract->zoom_y * 0.5 / 2;
+	}
+	ft_draw(mlx, mlx->img, mlx->fract);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->img, 0, 0);
+	mlx_destroy_image(mlx->mlx, mlx->img->img);
 }
 
 int		ft_key_events(int keycode, t_mlx *mlx)
@@ -95,6 +95,13 @@ int		ft_key_events(int keycode, t_mlx *mlx)
 		ft_move(keycode, mlx);
 	if (keycode == 69 || keycode == 78)
 		ft_change_max(keycode, mlx);
+	if (keycode == 49)
+	{
+		if (mlx->stop == 1)
+			mlx->stop = 0;
+		else
+			mlx->stop = 1;
+	}
 	//printf("%d\n", keycode);
 	return (0);
 }

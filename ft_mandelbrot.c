@@ -20,9 +20,10 @@ void	ft_init_mandel(t_fract *fract)
 	fract->x2 = 0.6;
 	fract->y1 = -1.2;
 	fract->y2 = 1.2;
+	fract->nb_zoom = 0;
 	fract->zoom_x = WIN_WIDTH / (fract->x2 - fract->x1);
 	fract->zoom_y = WIN_HEIGHT / (fract->y2 - fract->y1);
-	fract->max = 50;
+	fract->max = 100;
 }
 
 void	ft_draw_mandelbrot(t_mlx *mlx, t_img *img, t_fract *fract)

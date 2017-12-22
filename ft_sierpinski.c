@@ -13,103 +13,54 @@
 #include "fractol.h"
 
 void	ft_init_sierpinski(t_fract *fract)
-{	
+{
 	fract->x1 = -5;
 	fract->x2 = 5;
 	fract->y1 = -5;
 	fract->y2 = 5;
-	fract->zoom_x = WIN_WIDTH / (fract->x2 - fract->x1);
-	fract->zoom_y = WIN_HEIGHT / (fract->y2 - fract->y1);
-	fract->max = 100;
+	fract->zoom_x = 0.00005;
+	fract->zoom_y = 0.00005;
+	fract->max = 50;
 	fract->x = 0;
 	fract->y = 0;
 }
 
-void	ft_draw_sierpinski(t_mlx *mlx, t_img *img, t_fract *fract)
+int		ft_sierpinski(int x, int y, t_fract *fract)
 {
 	int		i;
+
+	i = 0;
+	x = x / fract->zoom_x + fract->x1;
+	y = y / fract->zoom_y + fract->y1;
+	while ((x > 0 || y > 0) && i < fract->max)
+	{
+		if (x % 3 == 1 && y % 3 == 1)
+			return (0);
+		x /= 3;
+		y /= 3;
+		i++;
+	}
+	return (1);
+}
+
+void	ft_draw_sierpinski(t_mlx *mlx, t_img *img, t_fract *fract)
+{
 	double	x;
 	double	y;
-	
-	x = mlx->fract->x;
-	while (x < WIN_WIDTH)
-	{
-		y = fract->y;
-		while (y < WIN_HEIGHT)
-		{
-			i = -1;
-			fract->z_r = x + fract->zoom_x - fract->x1;
-			fract->z_i = y + fract->zoom_y - fract->y1;
-			fract->z_r /= 3;
-			fract->z_i /= 3;
-			/*
-			while ((int)fract->z_r % 3 == 1 && (int)fract->z_i % 3 == 1 && ++i < fract->max)
-			{
-				fract->z_r /= 3;
-				fract->z_i /= 3;
-			}
-			if (x == 1 && y == 1)
-				ft_fill_pixel(*img, x, y, BLACK);
-			else
-			*/
-				ft_fill_pixel(*img, x, y, WHITE);
-			y++;
-		}
-		x++;
-	}
 
-	/*
-	x = fract->x;
+	mlx->fract->x = 0;
+	x = (int)mlx->fract->x;
 	while (x < WIN_WIDTH)
 	{
-		y = fract->y;
+		y = (int)fract->y;
 		while (y < WIN_HEIGHT)
 		{
-			i = -1;
-			fract->z_r = x + fract->zoom_x - fract->x1;
-			fract->z_i = y + fract->zoom_y - fract->y1;
-			while ((int)fract->z_r % 3 == 1 && (int)fract->z_i % 3 == 1 && ++i < fract->max)
-			{
-				fract->z_r /= 3;
-				fract->z_i /= 3;
-			}
-			if (i != fract->max)
-				ft_fill_pixel(*img, x, y, BLACK);
+			if (ft_sierpinski(x, y, fract) == 1)
+				ft_fill_pixel(*img, x, y, WHITE);
 			else
-				ft_fill_pixel(*img, x, y, ft_get_color(i, mlx));
+				ft_fill_pixel(*img, x, y, BLACK);
 			y++;
 		}
 		x++;
 	}
-	
-	x = fract->x;
-	while (x < WIN_WIDTH)
-	{
-		y = fract->y;
-		while (y < WIN_HEIGHT)
-		{
-			fract->c_r = x / fract->zoom_x + fract->x1;
-			fract->c_i = y / fract->zoom_y + fract->y1;
-			i = 0;
-			while (fract->z_r * fract->z_r + fract->z_i * fract->z_i < 4
-				&& i < fract->max)
-			{
-				
-				tmp = fract->z_r;
-				fract->z_r = fract->z_r * fract->z_r - fract->z_i *
-				fract->z_i + fract->c_r;
-				fract->z_i = tmp * fract->z_i + tmp * fract->z_i + fract->c_i;
-				i++;
-			}
-			if (i == fract->max)
-				ft_fill_pixel(*img, x, y, BLACK);
-			else
-				ft_fill_pixel(*img, x, y, YELLOW);
-			y++;
-		}
-		x++;
-	}
-	if (mlx)
-	{}
-	*/
 }

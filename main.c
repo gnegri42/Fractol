@@ -38,7 +38,7 @@ void		ft_exec_frac(t_mlx *mlx, t_img *img, t_fract *fract)
 	}
 	else if (mlx->num == 4)
 	{
-		ft_init_bship(fract);
+		ft_init_sierpinski(fract);
 		ft_draw(mlx, img, fract);
 	}
 }

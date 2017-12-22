@@ -15,11 +15,11 @@
 void	ft_draw(t_mlx *mlx, t_img *img, t_fract *fract)
 {
 	if (mlx->num == 1)
-		ft_draw_mandelbrot(mlx, img, fract);
+		ft_draw_mandelbrot(mlx, fract);
 	else if (mlx->num == 2)
-		ft_draw_julia(mlx, img, fract);
+		ft_draw_julia(mlx, fract);
 	else if (mlx->num == 3)
-		ft_draw_bship(mlx, img, fract);
+		ft_draw_bship(mlx, fract);
 	else if (mlx->num == 4)
 		ft_draw_sierpinski(mlx, img, fract);
 }

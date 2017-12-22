@@ -85,10 +85,12 @@ FLAGS =		-Wall -Werror -Wextra -ggdb
 
 all: $(NAME)
 
-$(NAME) :
-	@$(CC) $(FLAGS) -c $(SRCS)
+$(NAME) : $(OBJS)
 	@ar rc $(NAME) $(OBJS)
-	@echo "\033[1;91mCompilation libft complete !\033[0m" 
+	@echo "\033[1;91mCompilation libft complete !\033[0m"
+
+$(OBJS): $(SRCS)
+	@$(CC) $(FLAGS) -c $(SRCS)
 
 clean :
 	@rm -rf $(OBJS)

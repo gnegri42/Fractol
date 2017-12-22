@@ -40,14 +40,19 @@ LIB = 			libft/libft.a
 
 .PHONY: all clean fclean re
 
-all : $(NAME)
+all : 	lib $(NAME) 		
 
-$(NAME) :
-	@echo "\033[1;91mCompilation...\033[0m"
-	@make re -C $(LIB_PATH)
+lib :
+	@make -C $(LIB_PATH)
+
+$(NAME) : $(OBJS)
+	@echo "\033[1;91mCompilation... Fractol\033[0m"
 	@$(CC) $(FLAGS) -c $(SRCS)
 	@$(CC) $(FLAGS) $(FLAGS2) -o $(NAME) $(OBJS) $(LIB) -Wunused-command-line-argument
 	@echo "\033[1;91mCompilation complete !\033[0m" 
+
+$(OBJS): $(SRCS)
+	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
 	@make clean -C $(LIB_PATH)

@@ -41,6 +41,11 @@ void		ft_exec_frac(t_mlx *mlx, t_img *img, t_fract *fract)
 		ft_init_sierpinski(fract);
 		ft_draw(mlx, img, fract);
 	}
+	else if (mlx->num == 5)
+	{
+		ft_init_thunder(fract);
+		ft_draw(mlx, img, fract);
+	}
 }
 
 void		ft_fill_pixel(t_img img, int x, int y, int color)

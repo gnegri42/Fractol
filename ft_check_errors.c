@@ -16,13 +16,14 @@ int		ft_check_errors(int argc, char **argv)
 {
 	if (argc != 2 || (ft_strcmp(argv[1], "1") != 0 &&
 		ft_strcmp(argv[1], "2") != 0 && ft_strcmp(argv[1], "3") != 0 &&
-		ft_strcmp(argv[1], "4") != 0))
+		ft_strcmp(argv[1], "4") != 0 && ft_strcmp(argv[1], "5") != 0))
 	{
 		ft_putstr("usage: ./fractol int_number\n");
 		ft_putstr("1 = Mandlebrot\n");
 		ft_putstr("2 = Julia\n");
 		ft_putstr("3 = Burning ship\n");
 		ft_putstr("4 = Sierpinski Carpet\n");
+		ft_putstr("5 = Thunder\n");
 		return (0);
 	}
 	return (1);

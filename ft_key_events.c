@@ -68,7 +68,7 @@ static void	ft_change_fract(int keycode, t_mlx *mlx)
 {
 	if (keycode == 48)
 	{
-		if (mlx->num > 0 && mlx->num < 4)
+		if (mlx->num > 0 && mlx->num < 6)
 			mlx->num = mlx->num + 1;
 		else
 			mlx->num = 1;

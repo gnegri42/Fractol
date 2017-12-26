@@ -23,5 +23,7 @@ void	ft_draw(t_mlx *mlx, t_img *img, t_fract *fract)
 	else if (mlx->num == 4)
 		ft_draw_sierpinski(mlx, img, fract);
 	else if (mlx->num == 5)
+		ft_draw_calc(mlx, fract);
+	else if (mlx->num == 6)
 		ft_draw_thunder(mlx, fract);
 }

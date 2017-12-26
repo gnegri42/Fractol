@@ -19,6 +19,25 @@ static void	ft_call_hooks(t_mlx mlx)
 	mlx_hook(mlx.win, 6, 1L << 6, ft_move_julia, &mlx);
 }
 
+static void	ft_exec_frac2(t_mlx *mlx, t_img *img, t_fract *fract)
+{
+	if (mlx->num == 4)
+	{
+		ft_init_sierpinski(fract);
+		ft_draw(mlx, img, fract);
+	}
+	else if (mlx->num == 5)
+	{
+		ft_init_calc(fract);
+		ft_draw(mlx, img, fract);
+	}
+	else if (mlx->num == 6)
+	{
+		ft_init_thunder(fract);
+		ft_draw(mlx, img, fract);
+	}
+}
+
 void		ft_exec_frac(t_mlx *mlx, t_img *img, t_fract *fract)
 {
 	if (mlx->num == 1)
@@ -36,16 +55,8 @@ void		ft_exec_frac(t_mlx *mlx, t_img *img, t_fract *fract)
 		ft_init_bship(fract);
 		ft_draw(mlx, img, fract);
 	}
-	else if (mlx->num == 4)
-	{
-		ft_init_sierpinski(fract);
-		ft_draw(mlx, img, fract);
-	}
-	else if (mlx->num == 5)
-	{
-		ft_init_thunder(fract);
-		ft_draw(mlx, img, fract);
-	}
+	else if (mlx->num > 3 && mlx->num < 7)
+		ft_exec_frac2(mlx, img, fract);
 }
 
 void		ft_fill_pixel(t_img img, int x, int y, int color)

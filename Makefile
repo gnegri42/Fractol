@@ -19,6 +19,7 @@ SRCS = 			main.c\
 				ft_burning_ship.c\
 				ft_sierpinski.c\
 				ft_thunder.c\
+				ft_calc.c\
 				ft_check_errors.c\
 				ft_key_events.c\
 				ft_mouse_events.c\

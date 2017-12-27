@@ -12,18 +12,12 @@
 
 #include "fractol.h"
 
-void	ft_mouse_zoomin(t_mlx *mlx)
+void	ft_mouse_zoomin(t_mlx *mlx, int x, int y)
 {
+	mlx->fract->x1 += (100 + (x - WIN_WIDTH / 2)) / mlx->fract->zoom_x;
+	mlx->fract->y1 += (100 + (y - WIN_HEIGHT / 2)) / mlx->fract->zoom_y;
 	mlx->fract->zoom_x += mlx->fract->zoom_x * 1.05 / 2;
 	mlx->fract->zoom_y += mlx->fract->zoom_y * 1.05 / 2;
-	mlx->fract->x1 = mlx->fract->tmp_x1 -
-	(mlx->fract->x2 - mlx->fract->x1) / 4;
-	mlx->fract->y1 = mlx->fract->tmp_y1 -
-	(mlx->fract->y2 - mlx->fract->y1) / 4;
-	mlx->fract->x2 = mlx->fract->tmp_x1 +
-	(mlx->fract->x2 - mlx->fract->tmp_x2) / 4;
-	mlx->fract->y2 = mlx->fract->tmp_y1 +
-	(mlx->fract->y2 - mlx->fract->tmp_y2) / 4;
 	mlx->fract->nb_zoom++;
 }
 
@@ -34,20 +28,16 @@ int		ft_mouse_zoom(int button, int x, int y, t_mlx *mlx)
 		&(mlx->img->bpp), &(mlx->img->s_l), &(mlx->img->endian));
 	if (x >= WIN_WIDTH || y >= WIN_HEIGHT || x <= 0 || y <= 0)
 		return (0);
-	mlx->fract->tmp_x1 = mlx->fract->x1 + x *
-	(mlx->fract->x2 - mlx->fract->x1) / WIN_WIDTH;
-	mlx->fract->tmp_y1 = mlx->fract->y1 + y *
-	(mlx->fract->y2 - mlx->fract->y1) / WIN_HEIGHT;
-	mlx->fract->tmp_x2 = mlx->fract->x1;
-	mlx->fract->tmp_y2 = mlx->fract->y1;
 	if ((button == 2 || button == 4))
 	{
+		mlx->fract->x1 -= 100 / mlx->fract->zoom_x;
+		mlx->fract->y1 -= 100 / mlx->fract->zoom_y;
 		mlx->fract->zoom_x -= mlx->fract->zoom_x * 0.5 / 2;
 		mlx->fract->zoom_y -= mlx->fract->zoom_y * 0.5 / 2;
 		mlx->fract->nb_zoom--;
 	}
 	else if (button == 1 || button == 5)
-		ft_mouse_zoomin(mlx);
+		ft_mouse_zoomin(mlx, x, y);
 	ft_draw(mlx, mlx->img, mlx->fract);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->img, 0, 0);
 	mlx_destroy_image(mlx->mlx, mlx->img->img);

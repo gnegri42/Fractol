@@ -19,18 +19,23 @@ void	ft_expose_hook(t_mlx *mlx)
 
 	x = 30;
 	y = 40;
-	while (x <= 180)
+	while (x <= 295)
 		mlx_pixel_put(mlx->mlx, mlx->win, x++, y, WHITE);
-	while (y <= 120)
+	while (y <= 160)
 		mlx_pixel_put(mlx->mlx, mlx->win, x, y++, WHITE);
 	while (x >= 30)
 		mlx_pixel_put(mlx->mlx, mlx->win, x--, y, WHITE);
 	while (y >= 40)
 		mlx_pixel_put(mlx->mlx, mlx->win, x, y--, WHITE);
 	mlx_string_put(mlx->mlx, mlx->win, 38, 38, WHITE, "Quit = ESC");
-	mlx_string_put(mlx->mlx, mlx->win, 38, 58, WHITE, "Move = ^ v < >");
-	mlx_string_put(mlx->mlx, mlx->win, 38, 78, WHITE, "Zoom = w s");
-	mlx_string_put(mlx->mlx, mlx->win, 38, 98, WHITE, "Up Down = e d");
+	mlx_string_put(mlx->mlx, mlx->win, 38, 58, WHITE,
+		"Move = ^ v < > or CLICK");
+	mlx_string_put(mlx->mlx, mlx->win, 38, 78, WHITE,
+		"Zoom = W S or MOUSE WHEEL");
+	mlx_string_put(mlx->mlx, mlx->win, 38, 98, WHITE, "Change colors = C");
+	mlx_string_put(mlx->mlx, mlx->win, 38, 118, WHITE, "Reset = BACKSPACE");
+	mlx_string_put(mlx->mlx, mlx->win, 38, 138, WHITE,
+		"Add/Rm iterations = +/-");
 }
 
 void	ft_draw(t_mlx *mlx, t_img *img, t_fract *fract)

@@ -52,14 +52,14 @@ static void	ft_zoom(int keycode, t_mlx *mlx)
 	if (keycode == 13)
 	{
 		mlx->fract->x1 += 100 / mlx->fract->zoom_x;
-		mlx->fract->y1 += 100 / mlx->fract->zoom_x;
+		mlx->fract->y1 += 100 / mlx->fract->zoom_y;
 		mlx->fract->zoom_x += mlx->fract->zoom_x * 1.05 / 2;
 		mlx->fract->zoom_y += mlx->fract->zoom_y * 1.05 / 2;
 	}
 	else if (keycode == 1)
 	{
 		mlx->fract->x1 -= 100 / mlx->fract->zoom_x;
-		mlx->fract->y1 -= 100 / mlx->fract->zoom_x;
+		mlx->fract->y1 -= 100 / mlx->fract->zoom_y;
 		mlx->fract->zoom_x -= mlx->fract->zoom_x * 0.5 / 2;
 		mlx->fract->zoom_y -= mlx->fract->zoom_y * 0.5 / 2;
 	}

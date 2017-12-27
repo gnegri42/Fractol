@@ -19,7 +19,7 @@ int		ft_check_errors(int argc, char **argv)
 		ft_strcmp(argv[1], "4") != 0 && ft_strcmp(argv[1], "5") != 0 &&
 		ft_strcmp(argv[1], "6") != 0 && ft_strcmp(argv[1], "7") != 0))
 	{
-		ft_putstr("usage: ./fractol int_number\n");
+		ft_putstr("usage: ./fractol number\n");
 		ft_putstr("1 = Mandlebrot\n");
 		ft_putstr("2 = Julia\n");
 		ft_putstr("3 = Burning ship\n");

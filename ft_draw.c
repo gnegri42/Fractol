@@ -12,6 +12,27 @@
 
 #include "fractol.h"
 
+void	ft_expose_hook(t_mlx *mlx)
+{
+	int			x;
+	int			y;
+
+	x = 30;
+	y = 40;
+	while (x <= 180)
+		mlx_pixel_put(mlx->mlx, mlx->win, x++, y, WHITE);
+	while (y <= 120)
+		mlx_pixel_put(mlx->mlx, mlx->win, x, y++, WHITE);
+	while (x >= 30)
+		mlx_pixel_put(mlx->mlx, mlx->win, x--, y, WHITE);
+	while (y >= 40)
+		mlx_pixel_put(mlx->mlx, mlx->win, x, y--, WHITE);
+	mlx_string_put(mlx->mlx, mlx->win, 38, 38, WHITE, "Quit = ESC");
+	mlx_string_put(mlx->mlx, mlx->win, 38, 58, WHITE, "Move = ^ v < >");
+	mlx_string_put(mlx->mlx, mlx->win, 38, 78, WHITE, "Zoom = w s");
+	mlx_string_put(mlx->mlx, mlx->win, 38, 98, WHITE, "Up Down = e d");
+}
+
 void	ft_draw(t_mlx *mlx, t_img *img, t_fract *fract)
 {
 	if (mlx->num == 1)

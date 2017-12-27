@@ -95,6 +95,7 @@ int			main(int argc, char **argv)
 	mlx_put_image_to_window(mlx.mlx, mlx.win, img.img, 0, 0);
 	mlx_destroy_image(mlx.mlx, img.img);
 	ft_call_hooks(mlx);
+	ft_expose_hook(&mlx);
 	mlx_loop(mlx.mlx);
 	free(fract);
 	return (0);

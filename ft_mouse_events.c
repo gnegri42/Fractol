@@ -40,7 +40,7 @@ int		ft_mouse_zoom(int button, int x, int y, t_mlx *mlx)
 	(mlx->fract->y2 - mlx->fract->y1) / WIN_HEIGHT;
 	mlx->fract->tmp_x2 = mlx->fract->x1;
 	mlx->fract->tmp_y2 = mlx->fract->y1;
-	if ((button == 2 || button == 4) && mlx->fract->nb_zoom > 0)
+	if ((button == 2 || button == 4))
 	{
 		mlx->fract->zoom_x -= mlx->fract->zoom_x * 0.5 / 2;
 		mlx->fract->zoom_y -= mlx->fract->zoom_y * 0.5 / 2;
@@ -51,6 +51,7 @@ int		ft_mouse_zoom(int button, int x, int y, t_mlx *mlx)
 	ft_draw(mlx, mlx->img, mlx->fract);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->img, 0, 0);
 	mlx_destroy_image(mlx->mlx, mlx->img->img);
+	ft_expose_hook(mlx);
 	return (0);
 }
 
@@ -67,6 +68,7 @@ int		ft_move_julia(int x, int y, t_mlx *mlx)
 		ft_draw(mlx, mlx->img, mlx->fract);
 		mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->img, 0, 0);
 		mlx_destroy_image(mlx->mlx, mlx->img->img);
+		ft_expose_hook(mlx);
 	}
 	return (0);
 }

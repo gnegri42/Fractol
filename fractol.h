@@ -98,5 +98,6 @@ int					ft_move_julia(int x, int y, t_mlx *mlx);
 int					ft_mouse_zoom(int button, int x, int y, t_mlx *mlx);
 unsigned int		ft_get_color(int i, t_mlx *mlx);
 void				ft_change_color(t_mlx *mlx);
+void				ft_expose_hook(t_mlx *mlx);
 
 #endif

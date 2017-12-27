@@ -22,8 +22,8 @@
 # include <sys/stat.h>
 # include <math.h>
 
-# define WIN_WIDTH	1000
-# define WIN_HEIGHT	1000
+# define WIN_WIDTH	800
+# define WIN_HEIGHT	800
 
 # define BLUE 0x1E90FF
 # define BLACK 0x000000
@@ -82,6 +82,7 @@ void				ft_init_bship(t_fract *fract);
 void				ft_init_sierpinski(t_fract *fract);
 void				ft_init_thunder(t_fract *fract);
 void				ft_init_calc(t_fract *fract);
+void				ft_init_coton(t_fract *fract);
 void				ft_exec_frac(t_mlx *mlx, t_img *img, t_fract *fract);
 void				ft_draw(t_mlx *mlx, t_img *img, t_fract *fract);
 void				ft_draw_mandelbrot(t_mlx *mlx, t_fract *fract);
@@ -90,6 +91,7 @@ void				ft_draw_bship(t_mlx *mlx, t_fract *fract);
 void				ft_draw_sierpinski(t_mlx *mlx, t_img *img, t_fract *fract);
 void				ft_draw_thunder(t_mlx *mlx, t_fract *fract);
 void				ft_draw_calc(t_mlx *mlx, t_fract *fract);
+void				ft_draw_coton(t_mlx *mlx, t_fract *fract);
 int					ft_check_errors(int argc, char **argv);
 int					ft_key_events(int keycode, t_mlx *mlx);
 int					ft_move_julia(int x, int y, t_mlx *mlx);

@@ -26,4 +26,6 @@ void	ft_draw(t_mlx *mlx, t_img *img, t_fract *fract)
 		ft_draw_calc(mlx, fract);
 	else if (mlx->num == 6)
 		ft_draw_thunder(mlx, fract);
+	else if (mlx->num == 7)
+		ft_draw_coton(mlx, fract);
 }

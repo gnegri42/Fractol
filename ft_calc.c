@@ -23,7 +23,7 @@ void		ft_init_calc(t_fract *fract)
 	fract->nb_zoom = 0;
 	fract->zoom_x = WIN_WIDTH / (fract->x2 - fract->x1);
 	fract->zoom_y = WIN_HEIGHT / (fract->y2 - fract->y1);
-	fract->c_r = 0.25;
+	fract->c_r = -1;
 	fract->c_i = 0;
 	fract->z_r = 0;
 	fract->z_i = 0;
@@ -48,9 +48,9 @@ static void	ft_draw_calc2(t_mlx *mlx, t_fract *fract, int x, int y)
 		i++;
 	}
 	if (i == fract->max)
-		ft_fill_pixel(*mlx->img, x, y, BLACK);
+		ft_fill_pixel(*mlx->img, x, y, YELLOW);
 	else
-		ft_fill_pixel(*mlx->img, x, y, ft_get_color(i + 107, mlx));
+		ft_fill_pixel(*mlx->img, x, y, ft_get_color(i + 25, mlx));
 }
 
 void		ft_draw_calc(t_mlx *mlx, t_fract *fract)

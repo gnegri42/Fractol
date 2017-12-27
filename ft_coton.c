@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_douady.c                                        :+:      :+:    :+:   */
+/*   ft_coton.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gnegri <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/26 12:50:38 by gnegri            #+#    #+#             */
-/*   Updated: 2017/12/26 12:50:42 by gnegri           ###   ########.fr       */
+/*   Created: 2017/12/27 10:44:54 by gnegri            #+#    #+#             */
+/*   Updated: 2017/12/27 10:44:56 by gnegri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		ft_init_thunder(t_fract *fract)
+void		ft_init_coton(t_fract *fract)
 {
 	fract->x = 0;
 	fract->y = 0;
@@ -23,14 +23,14 @@ void		ft_init_thunder(t_fract *fract)
 	fract->nb_zoom = 0;
 	fract->zoom_x = WIN_WIDTH / (fract->x2 - fract->x1);
 	fract->zoom_y = WIN_HEIGHT / (fract->y2 - fract->y1);
-	fract->c_r = 0;
-	fract->c_i = 1;
+	fract->c_r = 0.25;
+	fract->c_i = 0;
 	fract->z_r = 0;
 	fract->z_i = 0;
-	fract->max = 100;
+	fract->max = 50;
 }
 
-static void	ft_draw_thunder2(t_mlx *mlx, t_fract *fract, int x, int y)
+static void	ft_draw_coton2(t_mlx *mlx, t_fract *fract, int x, int y)
 {
 	int		i;
 	double	tmp;
@@ -48,12 +48,12 @@ static void	ft_draw_thunder2(t_mlx *mlx, t_fract *fract, int x, int y)
 		i++;
 	}
 	if (i == fract->max)
-		ft_fill_pixel(*mlx->img, x, y, ORANGE);
+		ft_fill_pixel(*mlx->img, x, y, BLACK);
 	else
-		ft_fill_pixel(*mlx->img, x, y, ft_get_color(i + 70, mlx));
+		ft_fill_pixel(*mlx->img, x, y, ft_get_color(i + 107, mlx));
 }
 
-void		ft_draw_thunder(t_mlx *mlx, t_fract *fract)
+void		ft_draw_coton(t_mlx *mlx, t_fract *fract)
 {
 	int		x;
 	int		y;
@@ -64,7 +64,7 @@ void		ft_draw_thunder(t_mlx *mlx, t_fract *fract)
 		y = fract->y;
 		while (y < WIN_HEIGHT)
 		{
-			ft_draw_thunder2(mlx, fract, x, y);
+			ft_draw_coton2(mlx, fract, x, y);
 			y++;
 		}
 		x++;

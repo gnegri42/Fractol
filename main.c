@@ -36,6 +36,11 @@ static void	ft_exec_frac2(t_mlx *mlx, t_img *img, t_fract *fract)
 		ft_init_thunder(fract);
 		ft_draw(mlx, img, fract);
 	}
+	else if (mlx->num == 7)
+	{
+		ft_init_coton(fract);
+		ft_draw(mlx, img, fract);
+	}
 }
 
 void		ft_exec_frac(t_mlx *mlx, t_img *img, t_fract *fract)
@@ -55,7 +60,7 @@ void		ft_exec_frac(t_mlx *mlx, t_img *img, t_fract *fract)
 		ft_init_bship(fract);
 		ft_draw(mlx, img, fract);
 	}
-	else if (mlx->num > 3 && mlx->num < 7)
+	else if (mlx->num > 3 && mlx->num < 8)
 		ft_exec_frac2(mlx, img, fract);
 }
 
